@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous"
+    />
+
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <link rel="stylesheet" type="text/css" href="CSS/gestion.css">
+    <title>Projet IOT</title>
+
+    </head>
+    <body id="body" onload="loading()">
+        <div class="container">
+            <nav class="navbar">
+              <div class="nav_icon" onclick="toggleSidebar()">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+              </div>
+              <div class="navbar__left">
+                <i class="fas fa-circle" style="color: orange; margin-right: 5px;"></i>
+                <a id="parc1" class="active_link" href="#" onclick="">
+                  Parcelle 1
+                  <span class="tooltiptext"><i class="fal fa-meh" style="color: #ef9e10;"></i> ATTENTION : Votre parcelle va bientôt manquer d'eau</span>
+                </a>
+                <i class="fas fa-circle" style="color: green; margin-right: 5px;"></i>
+                <a id="parc2" class="" href="#" onclick="dataParc2()">
+                  Parcelle 2
+                  <span class="tooltiptext"><i class="fal fa-smile" style="color: green;"></i> Votre parcelle va bien</span>
+                </a>
+                <i class="fas fa-circle" style="color: red; margin-right: 5px;"></i>
+                <a id="parc3" class="" href="#" onclick="dataParc3()">
+                  Parcelle 3
+                  <span class="tooltiptext"><i class="fal fa-angry" style="color: red;"></i> ATTENTION : Votre parcelle manque d'eau</span>
+                </a>
+              </div>
+            </nav>
+
+            <main>
+              <div class="main__container">
+                <!-- MAIN TITLE STARTS HERE -->
+                <div class="main__title">
+                  <div class="main__greeting">
+                    <h1>Gestion de la ferme</h1>
+                  </div>
+                </div>
+                <!-- MAIN TITLE ENDS HERE -->
+
+                <!-- MAIN CARDS STARTS HERE -->
+                <div class="main__cards">
+                  <div class="card">
+                    <div class="card_inner">
+                      <h2 style="margin-bottom: 20px;" id="titleParc">Parcelle 1</h2>
+                      <table>
+                        <tr>
+                          <td><h4>Variété: </h4></td>
+                          <td><p class="text-primary-p" id="variete" style="margin-left: 80px;">Maïs Grain</p></td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                          <td><h4>Stade phénologique: </h4></td>
+                          <td><p class="text-primary-p" style="margin-left: 80px;" id="flor">Floraison femelle</p></td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                          <td><h4>Semis: </h4></td>
+                          <td><p class="text-primary-p" style="margin-left: 80px;" id="dateSemis">20/12/2020</p></td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card_inner">
+                      <h2 id="h" style="margin-bottom: 20px;">Irrigation de la parcelle 1</h2>
+                      <table>
+                        <tr>
+                          <td><h4>Nombre d'irrigations réalisées:</h4></td>
+                          <td><p style="margin-left: 20px;"><span id="resultIrri">2</span></p></td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                          <td><h4>Volume consommé: </h4></td>
+                          <td><p id="vc" style="margin-left: 20px;">50mm</p></td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                          <td><h4>Dernière irigation effectuée: </h4></td>
+                          <td><p id="die" style="margin-left: 20px;">8j</p></td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                          <td><p class="text-primary-p">16 Janvier 2021</p></td>
+                          <td><p class="text-primary-p">25mm</p></td>
+                        </tr>
+                      </table>
+
+                    </div>
+                    <div class="button-gerer">
+                      <a class="btn-gere" href="#popup1">Gérer</a>
+                    </div>
+
+                    <div id="popup1" class="overlay">
+                      <div class="popup">
+                        <h2>Irrigation</h2>
+                        <a class="close" href="#">&times;</a>
+                        <div class="content">
+                          Nombre d'irrigations réalisées :
+                          <input type="number" style="margin-bottom: 10px;" id="nbIrri">
+                          <br>
+                          Volume consommé :
+                          <input type="text" style="margin-bottom: 10px;" id="nbVol">
+                        </div>
+                        <div class="button-valid">
+                          <a class="btn-valid" id="btn-valid" href="#" onclick="valueInputIrri()">Sauvegarder</a>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="card">
+                    <div class="card_inner">
+                      <h2 style="margin-bottom: 20px;">Précipitations</h2>
+
+                      <h4>Dernières précipitations constatées</h4>
+                      <br>
+                      <table>
+                        <tr>
+                          <td>
+                            <p class="text-primary-p">15 Janvier 2021</p>
+                          </td>
+                          <td>
+                            <p id="1ValPrec" class="text-primary-p" style="margin-left: 80px;">3mm</p>
+                          </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                          <td>
+                            <p class="text-primary-p">16 Janvier 2021</p>
+                          </td>
+                          <td>
+                            <p id="2ValPrec" class="text-primary-p" style="margin-left: 80px;">5mm</p>
+                          </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                          <td>
+                            <p class="text-primary-p">17 Janvier 2021</p>
+                          </td>
+                          <td>
+                            <p id="3ValPrec" class="text-primary-p" style="margin-left: 80px;">2mm</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="button-gerer">
+                      <a class="btn-gere" href="#popup2">Gérer</a>
+                    </div>
+                    <div id="popup2" class="overlay">
+                      <div class="popup">
+                        <h2>Précipitations du 21 décembre 2020</h2>
+                        <a class="close" href="#">&times;</a>
+                        <div class="content">
+                          <br>
+                          Précipation (en mm):
+                          <input type="number" style="margin-bottom: 10px;" id="Prec">
+                          <div class="button-valid">
+                            <a class="btn-valid" href="#" onclick="valueInput()">Sauvegarder</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- MAIN CARDS ENDS HERE -->
+              </div>
+            </main>
+
+            <div id="sidebar">
+              <div class="sidebar__title">
+                <div class="sidebar__img">
+                  <h1>Projet IOT</h1>
+                </div>
+                <i
+                  onclick="closeSidebar()"
+                  class="fa fa-times"
+                  id="sidebarIcon"
+                  aria-hidden="true"
+                ></i>
+              </div>
+
+              <div class="sidebar__menu">
+                <div class="sidebar__link">
+                  <i class="fa fa-home"></i>
+                  <a href="dashboard.html">Accueil</a>
+                </div>
+                <div class="sidebar__link active_menu_link">
+                  <i class="fal fa-building"></i>
+                  <a href="#">Gestion de la ferme</a>
+                </div>
+                <div class="sidebar__link">
+                    <i class="fa fa-archive"></i>
+                    <a href="capteurs.html">Capteurs</a>
+                  </div>
+                <div class="sidebar__link">
+                  <i class="fa fa-wrench"></i>
+                  <a href="parameter.html">Paramètres</a>
+                </div>
+                <div class="sidebar__link">
+                  <i class="fa fa-question"></i>
+                  <a href="contact.html">Nous contacter</a>
+                </div>
+                <div class="sidebar__logout">
+                  <i class="fa fa-power-off"></i>
+                  <a href="index.html">Deconnexion</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+          <script type="text/javascript" src="JS/gestion.js"></script>
+    </body>
+</html>
